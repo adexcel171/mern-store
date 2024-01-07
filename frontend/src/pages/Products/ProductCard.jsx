@@ -24,7 +24,7 @@ const ProductCard = ({ p }) => {
             {p?.brand}
           </span>
           <img
-            className="cursor-pointer w-full"
+            className="cursor-pointer w-full "
             src={p.image}
             alt={p.name}
             style={{ height: "170px", objectFit: "cover" }}

@@ -27,83 +27,84 @@ const ProductCarousel = () => {
   };
 
   return (
-    <div className="mb-4 lg:block xl:block md:block">
-      {isLoading ? null : error ? (
-        <Message variant="danger">
-          {error?.data?.message || error.error}
-        </Message>
-      ) : (
-        <Slider
-          {...settings}
-          className="xl:w-[50rem]  lg:w-[50rem] md:w-[56rem] sm:w-[40rem] sm:block"
-        >
-          {products.map(
-            ({
-              image,
-              _id,
-              name,
-              price,
-              description,
-              brand,
-              createdAt,
-              numReviews,
-              rating,
-              quantity,
-              countInStock,
-            }) => (
-              <div key={_id}>
-                <img
-                  src={image}
-                  alt={name}
-                  className="w-full rounded-lg object-cover h-[30rem]"
-                />
-
-                <div className="mt-4 flex justify-between">
-                  <div className="one">
-                    <h2>{name}</h2>
-                    <p> $ {price}</p> <br /> <br />
-                    <p className="w-[25rem]">
-                      {description.substring(0, 170)} ...
-                    </p>
+    <div className="mb-4 lg:block xl:block md:block sm:block ">
+    {isLoading ? null : error ? (
+      <Message variant="danger">
+        {error?.data?.message || error.error}
+      </Message>
+    ) : (
+      <Slider
+        {...settings}
+        className="w-full sm:w-full md:w-[56rem] lg:w-[50rem] xl:w-[50rem] mx-auto"
+      >
+        {products.map(
+          ({
+            image,
+            _id,
+            name,
+            price,
+            description,
+            brand,
+            createdAt,
+            numReviews,
+            rating,
+            quantity,
+            countInStock,
+          }) => (
+            <div key={_id}>
+              <img
+                src={image}
+                alt={name}
+                className="w-full flex px-4 rounded-lg object-cover h-[25rem]"
+              />
+  
+              <div className="mt-4 flex flex-col lg:flex-row justify-between">
+                <div className="lg:w-full">
+                  <h2 className="text-xl lg:text-2xl font-semibold mb-2">{name}</h2>
+                  <p className="text-lg lg:text-xl mb-2">$ {price}</p>
+                  <p className="lg:w-full text-sm lg:text-base">
+                    {description.substring(0, 170)} ...
+                  </p>
+                </div>
+  
+                <div className="flex flex-col lg:flex-row w-full lg:mt-0">
+                  <div className="lg:w-full mb-4 lg:mb-0">
+                    <h1 className="flex items-center mb-2 lg:mb-6">
+                      <FaStore className="mr-2 text-white" /> Brand: {brand}
+                    </h1>
+                    <h1 className="flex items-center mb-2 lg:mb-6">
+                      <FaClock className="mr-2 text-white" /> Added:{" "}
+                      {moment(createdAt).fromNow()}
+                    </h1>
+                    <h1 className="flex items-center mb-2 lg:mb-6">
+                      <FaStar className="mr-2 text-white" /> Reviews: {numReviews}
+                    </h1>
                   </div>
-
-                  <div className="flex justify-between w-[20rem]">
-                    <div className="one">
-                      <h1 className="flex items-center mb-6">
-                        <FaStore className="mr-2 text-white" /> Brand: {brand}
-                      </h1>
-                      <h1 className="flex items-center mb-6">
-                        <FaClock className="mr-2 text-white" /> Added:{" "}
-                        {moment(createdAt).fromNow()}
-                      </h1>
-                      <h1 className="flex items-center mb-6">
-                        <FaStar className="mr-2 text-white" /> Reviews:
-                        {numReviews}
-                      </h1>
-                    </div>
-
-                    <div className="two">
-                      <h1 className="flex items-center mb-6">
-                        <FaStar className="mr-2 text-white" /> Ratings:{" "}
-                        {Math.round(rating)}
-                      </h1>
-                      <h1 className="flex items-center mb-6">
-                        <FaShoppingCart className="mr-2 text-white" /> Quantity:{" "}
-                        {quantity}
-                      </h1>
-                      <h1 className="flex items-center mb-6">
-                        <FaBox className="mr-2 text-white" /> In Stock:{" "}
-                        {countInStock}
-                      </h1>
-                    </div>
+  
+                  <div className="lg:w-full mb-4 lg:mb-0">
+                    <h1 className="flex items-center mb-2 lg:mb-6">
+                      <FaStar className="mr-2 text-white" /> Ratings:{" "}
+                      {Math.round(rating)}
+                    </h1>
+                    <h1 className="flex items-center mb-2 lg:mb-6">
+                      <FaShoppingCart className="mr-2 text-white" /> Quantity:{" "}
+                      {quantity}
+                    </h1>
+                    <h1 className="flex items-center mb-2 lg:mb-6">
+                      <FaBox className="mr-2 text-white" /> In Stock:{" "}
+                      {countInStock}
+                    </h1>
                   </div>
                 </div>
               </div>
-            )
-          )}
-        </Slider>
-      )}
-    </div>
+            </div>
+          )
+        )}
+      </Slider>
+    )}
+  </div>
+  
+
   );
 };
 
