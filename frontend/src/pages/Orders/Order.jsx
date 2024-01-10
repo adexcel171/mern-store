@@ -128,7 +128,7 @@ const Order = () => {
                       <td className="p-2 text-center">{item.qty}</td>
                       <td className="p-2 text-center">{item.price}</td>
                       <td className="p-2 text-center">
-                        $ {(item.qty * item.price).toFixed(2)}
+                      &#8358;{(item.qty * item.price).toFixed(2)}
                       </td>
                     </tr>
                   ))}

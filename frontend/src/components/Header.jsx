@@ -17,8 +17,8 @@ const Header = () => {
   return (
     <>
       <div className="flex sm:block flex-col items-center justify-center">
-  <div className="sm  xl:block">
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
+  <div className="sm:block  xl:block">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-4">
       {data.map((product) => (
         <div key={product._id} className="mb-4">
           <SmallProduct product={product} />

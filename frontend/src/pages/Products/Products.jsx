@@ -81,7 +81,7 @@ const Product = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap relative items-between mt-[2rem] ml-[10rem]">
+          <div className="flex flex-wrap relative items-between mt-[2rem] ml-[]">
             <div>
               <img
                 src={product.image}
