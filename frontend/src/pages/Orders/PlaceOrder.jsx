@@ -10,29 +10,28 @@ import { clearCartItems } from "../../redux/features/cart/cartSlice";
 
 const PlaceOrder = () => {
   const navigate = useNavigate();
-
   const cart = useSelector((state) => state.cart);
+  const { cartItems, itemsPrice, shippingPrice, taxPrice, totalPrice, shippingAddress, paymentMethod } = cart;
 
   const [createOrder, { isLoading, error }] = useCreateOrderMutation();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!cart.shippingAddress.address) {
+    if (!shippingAddress.address) {
       navigate("/shipping");
     }
   }, [cart.paymentMethod, cart.shippingAddress.address, navigate]);
 
-  const dispatch = useDispatch();
-
   const placeOrderHandler = async () => {
     try {
       const res = await createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
+        orderItems: cartItems,
+        shippingAddress: shippingAddress,
+        paymentMethod: paymentMethod,
+        itemsPrice: itemsPrice,
+        shippingPrice: shippingPrice,
+        taxPrice: taxPrice,
+        totalPrice: totalPrice,
       }).unwrap();
       dispatch(clearCartItems());
       navigate(`/order/${res._id}`);
@@ -46,7 +45,7 @@ const PlaceOrder = () => {
       <ProgressSteps step1 step2 step3 />
 
       <div className="container mx-auto mt-8">
-        {cart.cartItems.length === 0 ? (
+        {cartItems.length === 0 ? (
           <Message>Your cart is empty</Message>
         ) : (
           <div className="overflow-x-auto">
@@ -62,7 +61,7 @@ const PlaceOrder = () => {
               </thead>
 
               <tbody>
-                {cart.cartItems.map((item, index) => (
+                {cartItems.map((item, index) => (
                   <tr key={index}>
                     <td className="p-2">
                       <img
@@ -78,7 +77,7 @@ const PlaceOrder = () => {
                     <td className="p-2">{item.qty}</td>
                     <td className="p-2">{item.price.toFixed(2)}</td>
                     <td className="p-2">
-                    &#8358; {(item.qty * item.price).toFixed(2)}
+                      &#8358; {(item.qty * item.price).toFixed(2)}
                     </td>
                   </tr>
                 ))}
@@ -93,43 +92,43 @@ const PlaceOrder = () => {
             <ul className="text-lg">
               <li>
                 <span className="font-semibold mb-4">Items:</span> &#8358;
-                {cart.itemsPrice}
+                {itemsPrice}
               </li>
               <li>
                 <span className="font-semibold mb-4">Shipping:</span> &#8358;
-                {cart.shippingPrice}
+                {shippingPrice}
               </li>
               <li>
                 <span className="font-semibold mb-4">Tax:</span> &#8358;
-                {cart.taxPrice}
+                {taxPrice}
               </li>
               <li>
                 <span className="font-semibold mb-4">Total:</span> &#8358;
-                {cart.totalPrice}
+                {totalPrice}
               </li>
             </ul>
 
             {error && <Message variant="danger">{error.data.message}</Message>}
 
-            <div>
+            <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
               <h2 className="text-2xl font-semibold mb-4">Shipping</h2>
               <p>
-                <strong>Address:</strong> {cart.shippingAddress.address},{" "}
-                {cart.shippingAddress.city} {cart.shippingAddress.postalCode},{" "}
-                {cart.shippingAddress.country}
+                <strong>Address:</strong> {shippingAddress.address},{" "}
+                {shippingAddress.city} {shippingAddress.postalCode},{" "}
+                {shippingAddress.country}
               </p>
             </div>
 
-            <div>
+            <div className="w-full md:w-1/2 lg:w-1/3 xl:w-1/4">
               <h2 className="text-2xl font-semibold mb-4">Payment Method</h2>
-              <strong>Method:</strong> {cart.paymentMethod}
+              <strong>Method:</strong> {paymentMethod}
             </div>
           </div>
 
           <button
             type="button"
             className="bg-pink-500 text-white py-2 px-4 rounded-full text-lg w-full mt-4"
-            disabled={cart.cartItems === 0}
+            disabled={cartItems === 0}
             onClick={placeOrderHandler}
           >
             Place Order

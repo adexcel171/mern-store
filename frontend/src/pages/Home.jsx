@@ -20,23 +20,23 @@ const Home = () => {
         </Message>
       ) : (
         <>
-          <div className="flex justify-between sm:justify-center  items-center sm:w-5 sm:flex-col">
-            <h1 className=" sm:text-center lg:justify-center lg:text-center  px-2 sm:justify-center">
+          <div className="flex flex-col items-center md:flex-row md:justify-between lg:ml-20 mt-10 md:mt-0">
+            <h1 className="text-2xl md:text-3xl lg:text-4xl text-center md:text-left mb-4 md:mb-0">
               Special Products
             </h1>
 
             <Link
               to="/shop"
-              className="bg-pink-600 font-bold rounded-8 items-center py-2 px-2  mt-[10rem] sm:mr-[2] sm:flex-col"
+              className="bg-pink-600 font-bold rounded-full py-2 px-4 md:px-10 mt-4 md:mt-0"
             >
               Shop
             </Link>
           </div>
 
-          <div>
-            <div className="flex justify-center flex-wrap mt-[2rem]">
+          <div className="overflow-hidden">
+            <div className="flex justify-center flex-wrap mt-4">
               {data.products.map((product) => (
-                <div key={product._id}>
+                <div key={product._id} className="mb-4 md:mx-2">
                   <Product product={product} />
                 </div>
               ))}

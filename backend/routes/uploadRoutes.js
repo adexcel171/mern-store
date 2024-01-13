@@ -1,25 +1,17 @@
 import path from "path";
 import express from "express";
 import multer from "multer";
-import fs from "fs"; // Import the 'fs' module to work with file system operations
 
 const router = express.Router();
 
-const uploadDirectory = "uploads/";
-
-// Create the destination directory if it doesn't exist
-if (!fs.existsSync(uploadDirectory)) {
-  fs.mkdirSync(uploadDirectory);
-}
-
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, uploadDirectory);
+    cb(null, "uploads/");
   },
 
   filename: (req, file, cb) => {
     const extname = path.extname(file.originalname);
-    cb(null, `${file.originalname}-${Date.now()}${extname}`);
+    cb(null, `${file.fieldname}-${Date.now()}${extname}`);
   },
 });
 

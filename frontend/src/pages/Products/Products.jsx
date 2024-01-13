@@ -67,7 +67,7 @@ const Product = () => {
     <>
       <div>
         <Link
-          className="text-white font-semibold hover:underline ml-[10rem]"
+          className="text-white font-semibold hover:underline ml-4 mt-4"
           to="/"
         >
           Go Back
@@ -81,63 +81,59 @@ const Product = () => {
         </Message>
       ) : (
         <>
-          <div className="flex flex-wrap relative items-between mt-[2rem] ml-[]">
+          <div className="flex flex-col items-center mt-4 md:flex-row md:justify-between">
             <div>
               <img
                 src={product.image}
                 alt={product.name}
-                className="w-full  xl:w-[50rem] lg:w-[45rem] md:w-[30rem] sm:w-[20rem] mr-[]"
+                className="w-full xl:w-[20rem] md:w-full mb-4"
               />
               <HeartIcon product={product} />
             </div>
-            <div className="flex flex-col justify-between">
-              <h2 className="text-2xl font-semibold">{product.name}</h2>
+            <div className="flex flex-col justify-between md:ml-4">
+              <h2 className="text-xl md:text-2xl font-semibold mb-2 md:mb-0">
+                {product.name}
+              </h2>
 
-              <p className="my-4 xl:w-[35rem] lg:w-[35] md:w-[30rem] text-[#B0B0B0]">
+              <p className="text-sm md:text-base text-[#B0B0B0] mb-4">
                 {product.description}
               </p>
-              <p className="text-5xl my-4 font-extrabold">${product.price}</p>
-              {/* --------------------------------------------------- */}
+              <p className="text-lg md:text-2xl font-extrabold">${product.price}</p>
 
-              <div className="flex items-center justify-between w-[20rem]">
-                <div className="one">
-                  <h1 className="flex items-center mb-6">
-                    <FaStore className="mr-2 text-white" /> Brand:{" "}
-                    {product.brand}
+              <div className="flex flex-col md:flex-row justify-between md:w-[20rem] mb-4">
+                <div className="mb-2 md:mb-0">
+                  <h1 className="flex items-center mb-2">
+                    <FaStore className="mr-2 text-white" /> Brand: {product.brand}
                   </h1>
-                  <h1 className="flex items-center mb-6">
+                  <h1 className="flex items-center mb-2">
                     <FaClock className="mr-2 text-white" /> Added:{" "}
                     {moment(product.createdAt).fromNow()}
                   </h1>
-                  <h1 className="flex items-center mb-6">
-                    <FaStar className="mr-2 text-white" /> Reviews:
-                    {product.numReviews}
+                  <h1 className="flex items-center mb-2">
+                    <FaStar className="mr-2 text-white" /> Reviews: {product.numReviews}
                   </h1>
                 </div>
 
-                <div className="two">
-                  <h1 className="flex items-center mb-6">
+                <div>
+                  <h1 className="flex items-center mb-2">
                     <FaStar className="mr-2 text-white" /> Ratings: {rating}
                   </h1>
-                  <h1 className="flex items-center mb-6">
+                  <h1 className="flex items-center mb-2">
                     <FaShoppingCart className="mr-2 text-white" /> Quantity:{" "}
                     {product.quantity}
                   </h1>
-                  <h1 className="flex items-center mb-6">
+                  <h1 className="flex items-center mb-2">
                     <FaBox className="mr-2 text-white" /> In Stock:{" "}
                     {product.countInStock}
                   </h1>
                 </div>
               </div>
 
-              <div className="flex justify-between flex-wrap">
-                <Rating
-                  value={product.rating}
-                  text={`${product.numReviews} reviews`}
-                />
+              <div className="flex justify-between flex-wrap items-center">
+                <Rating value={product.rating} text={`${product.numReviews} reviews`} />
 
                 {product.countInStock > 0 && (
-                  <div className="">
+                  <div className="mb-2 md:mb-0">
                     <select
                       value={qty}
                       onChange={(e) => setQty(Number(e.target.value))}
@@ -153,20 +149,19 @@ const Product = () => {
                 )}
               </div>
 
-              <div className="btn-container">
+              <div className="btn-container mt-4 md:mt-0">
                 <button
                   onClick={addToCartHandler}
                   disabled={product.countInStock === 0}
-                  className="bg-pink-600 text-white py-2 px-4 rounded-lg mt-4 md:mt-0"
+                  className="bg-pink-600 text-white py-2 px-4 rounded-lg"
                 >
                   Add To Cart
                 </button>
               </div>
-              {/* --------------------------------------------------- */}
             </div>
           </div>
 
-          <div className="mt-[5rem] container flex flex-wrap items-start justify-between ml-[10rem]">
+          <div className="mt-4 container flex flex-col items-start justify-between md:ml-4">
             <ProductTabs
               loadingProductReview={loadingProductReview}
               userInfo={userInfo}
