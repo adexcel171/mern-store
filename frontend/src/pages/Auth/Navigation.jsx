@@ -44,8 +44,8 @@ const Navigation = () => {
 
   return (
     <div
-      style={{ zIndex: 9 }}
-      className="flex justify-between items-center p-4 text-white bg-black fixed w-full"
+      style={{ zIndex: 9, marginBottom:'100px'}}
+      className="flex justify-between items-center p-4 text-white  fixed w-full"
       id="navigation-container"
     >
       {/* Left section with links */}
@@ -54,7 +54,7 @@ const Navigation = () => {
           to="/"
           className="flex items-center transition-transform transform hover:translate-x-2"
         >
-          <span className="font-bold underline text-xl">Excel</span>
+          <span className="font-bold  text-xl">Excel</span>
 
         </Link>
 
@@ -62,7 +62,7 @@ const Navigation = () => {
           to="/shop"
           className="flex items-center transition-transform transform hover:translate-x-2"
         >
-          <AiOutlineShopping className="mr-2" size={26} />
+          <AiOutlineShopping className="mr-2" size={24} />
           <span>SHOP</span>
         </Link>
 

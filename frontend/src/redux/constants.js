@@ -1,4 +1,4 @@
-export const BASE_URL = "https://store-api-4xjx.onrender.com";
+export const BASE_URL = "  http://localhost:5173/";
 export const USERS_URL = "/api/users";
 export const CATEGORY_URL = "/api/category";
 export const PRODUCT_URL = "/api/products";

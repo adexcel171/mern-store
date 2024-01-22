@@ -3,7 +3,7 @@ import Product from "../models/productModel.js";
 
 const addProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, description, price, category, quantity, brand } = req.fields;
+    const { name, image, description, price, category, quantity, brand } = req.fields;
 
     // Validation
     switch (true) {
@@ -26,7 +26,7 @@ const addProduct = asyncHandler(async (req, res) => {
     res.json(product);
   } catch (error) {
     console.error(error);
-    res.status(400).json(error.message);
+  res.status(500).json({ error: 'Internal Server Error', message: error.message });
   }
 });
 
